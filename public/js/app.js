@@ -72,7 +72,7 @@ var app = angular.module('CitizenApp', [])
         var map; 
         
         var mapOptions = {
-            zoom: 6
+            zoom: 10
         };
         
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);

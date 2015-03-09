@@ -7,6 +7,8 @@ require('express-mongoose');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var report = require('./models/report.js');
+var log = require('./models/log.js');
+
 
 var app = express();
 app.use(bodyParser.json());
@@ -16,7 +18,14 @@ app.use(multer());
 
 app.use(cookieParser());
 
-
+app.use('/', function(req, res, next){
+    log.create({ requestIP: req.ip }, function(err, log){
+        if (err) throw err;
+        
+        next();
+    });
+    
+});
 //app.use(express.static(__dirname + '/public'));
 
 app.use('/', express.static(__dirname + '/public'));
