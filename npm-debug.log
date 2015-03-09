@@ -1,0 +1,98 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/ubuntu/.nvm/v0.10.35/bin/node',
+1 verbose cli   '/home/ubuntu/.nvm/v0.10.35/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-save',
+1 verbose cli   'mim-types' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 warn package.json accommorate@1.0.0 No repository field.
+5 warn package.json http@0.0.0 http is also the name of a node core module.
+6 warn package.json http@0.0.0 No description
+7 warn package.json http@0.0.0 No repository field.
+8 warn package.json http@0.0.0 No README data
+9 warn package.json fs@0.0.2 fs is also the name of a node core module.
+10 warn package.json fs@0.0.2 No description
+11 warn package.json fs@0.0.2 No repository field.
+12 warn package.json fs@0.0.2 No README data
+13 warn package.json path@0.11.14 path is also the name of a node core module.
+14 verbose readDependencies using package.json deps
+15 verbose cache add [ 'mim-types', null ]
+16 verbose cache add name=undefined spec="mim-types" args=["mim-types",null]
+17 verbose parsed url { protocol: null,
+17 verbose parsed url   slashes: null,
+17 verbose parsed url   auth: null,
+17 verbose parsed url   host: null,
+17 verbose parsed url   port: null,
+17 verbose parsed url   hostname: null,
+17 verbose parsed url   hash: null,
+17 verbose parsed url   search: null,
+17 verbose parsed url   query: null,
+17 verbose parsed url   pathname: 'mim-types',
+17 verbose parsed url   path: 'mim-types',
+17 verbose parsed url   href: 'mim-types' }
+18 silly lockFile 21ff7ecf-mim-types mim-types
+19 verbose lock mim-types /home/ubuntu/.npm/21ff7ecf-mim-types.lock
+20 silly lockFile 21ff7ecf-mim-types mim-types
+21 silly lockFile 21ff7ecf-mim-types mim-types
+22 verbose addNamed [ 'mim-types', '' ]
+23 verbose addNamed [ null, '*' ]
+24 silly lockFile 4d335e2a-mim-types mim-types@
+25 verbose lock mim-types@ /home/ubuntu/.npm/4d335e2a-mim-types.lock
+26 silly addNameRange { name: 'mim-types', range: '*', hasData: false }
+27 verbose request where is /mim-types
+28 verbose request registry https://registry.npmjs.org/
+29 verbose request id 0585a563dc217534
+30 verbose url raw /mim-types
+31 verbose url resolving [ 'https://registry.npmjs.org/', './mim-types' ]
+32 verbose url resolved https://registry.npmjs.org/mim-types
+33 verbose request where is https://registry.npmjs.org/mim-types
+34 info trying registry request attempt 1 at 18:41:42
+35 http GET https://registry.npmjs.org/mim-types
+36 http 404 https://registry.npmjs.org/mim-types
+37 verbose headers { date: 'Tue, 03 Mar 2015 18:41:43 GMT',
+37 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+37 verbose headers   'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=0',
+37 verbose headers   'content-length': '52',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   age: '0',
+37 verbose headers   'x-served-by': 'cache-ams4145-AMS',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1425408102.766559,VS0,VE657',
+37 verbose headers   'keep-alive': 'timeout=10, max=50',
+37 verbose headers   connection: 'Keep-Alive' }
+38 silly registry.get cb [ 404,
+38 silly registry.get   { date: 'Tue, 03 Mar 2015 18:41:43 GMT',
+38 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+38 silly registry.get     'content-type': 'application/json',
+38 silly registry.get     'cache-control': 'max-age=0',
+38 silly registry.get     'content-length': '52',
+38 silly registry.get     'accept-ranges': 'bytes',
+38 silly registry.get     via: '1.1 varnish',
+38 silly registry.get     age: '0',
+38 silly registry.get     'x-served-by': 'cache-ams4145-AMS',
+38 silly registry.get     'x-cache': 'MISS',
+38 silly registry.get     'x-cache-hits': '0',
+38 silly registry.get     'x-timer': 'S1425408102.766559,VS0,VE657',
+38 silly registry.get     'keep-alive': 'timeout=10, max=50',
+38 silly registry.get     connection: 'Keep-Alive' } ]
+39 silly lockFile 4d335e2a-mim-types mim-types@
+40 silly lockFile 4d335e2a-mim-types mim-types@
+41 error 404 404 Not Found: mim-types
+41 error 404
+41 error 404 'mim-types' is not in the npm registry.
+41 error 404 You should bug the author to publish it
+41 error 404 It was specified as a dependency of 'accommorate'
+41 error 404
+41 error 404 Note that you can also install from a
+41 error 404 tarball, folder, or http url, or git url.
+42 error System Linux 3.14.13-c9
+43 error command "/home/ubuntu/.nvm/v0.10.35/bin/node" "/home/ubuntu/.nvm/v0.10.35/bin/npm" "install" "-save" "mim-types"
+44 error cwd /home/ubuntu/workspace
+45 error node -v v0.10.35
+46 error npm -v 1.4.28
+47 error code E404
+48 verbose exit [ 1, true ]
