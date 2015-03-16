@@ -6,7 +6,8 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var createdDate = require('../plugins/createdDate');
 
 var schema = new mongoose.Schema({
-    requestIP: String
+    requestIP: String, 
+    requestURL: String
 });
 
 schema.plugin(createdDate);

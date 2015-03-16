@@ -7,6 +7,7 @@ require('express-mongoose');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var report = require('./models/report.js');
+var feedback = require('./models/feedback.js');
 var log = require('./models/log.js');
 
 
@@ -19,7 +20,7 @@ app.use(multer());
 app.use(cookieParser());
 
 app.use('/', function(req, res, next){
-    log.create({ requestIP: req.ip }, function(err, log){
+    log.create({ requestIP: req.ip , requestURL: req.originalUrl}, function(err, log){
         if (err) throw err;
         
         next();
@@ -56,8 +57,24 @@ app.post('/report',  function(req, res, next){
        }
     });
     
+    
+app.post('/feedback',  function(req, res, next){
+       if(!req.body == null){
+           res.status(400).json({'error': 'Bad Request - Missing body'});
+       }
+       else
+       {
+           console.log(req.body);
+           feedback.create(req.body, function(err, fb){
+            if(err) return next(err);
+            
+            res.status(200).json(fb);
+        }); 
+       }
+    });
+    
+    
 app.get('/api/reports', function(req, res, next){
-      console.log(req.query);
       var limit = 0;
       if (req.query.limit != null) {
           limit = req.query.limit;

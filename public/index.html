@@ -27,185 +27,32 @@
 
 </head>
 
-<body ng-app="CitizenApp">
+<body ng-app="CitizenApp" ng-controller="rootController">
     <div class="container-fluid">
         <div class="page-header">
-            <h1>CitizenApp</h1>
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="#/">Home</a></li>
+            <li role="presentation" ><a href="#/reports">Reports</a></li>
+            <li role="presentation" ><a href="#/api">API</a></li>
+            <li role="presentation" ><a href="#/about">About</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">CitizenApp</h3>
         </div>
+        
         <div class="row">
-            <div class="col-md-3" ng-controller="rootController">
-                <form novalidate>
-                    <div class="form-group">
-                        <!-- <label for="category">Report Category</label>
-                        <select ng-model="report.category" id="category" class="form-control">
-                            <option>Safety</option>
-                            <option>Facility</option>
-                        </select> -->
-                        <button class="btn btn-danger" ng-click="toggleSafety()">Safety</button>
-                        <button class="btn btn-warning" ng-click="toggleFacility()">Facility</button>
-                        
-                    </div>
-                    
-                    <div>
-                        <span class="label label-success">{{ report.category }}</span>
-                    </div>
-                    
-                    <div class="form-group" id="safetyOptions" ng-show="showSafety" ng-hide="showFacility">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="threatOptions" id="theft" ng-model="report.type" value="Theft" checked>Theft
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="threatOptions" id="teasing" ng-model="report.type" value="Teasing">Teasing
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="threatOptions" id="Suspicious Behaviour" value="Suspicious Behaviour" ng-model="report.type">Suspicious Behaviour
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="threatOptions" id="Violence" ng-model="report.type" value="Violence">Violence
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="threatOptions" id="Other" ng-model="report.type" value="Other">Other
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="facilityOptions" ng-show="showFacility" ng-hide="showSafety">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="facOptions" id="roads" ng-model="report.type" value="Roads" checked>Roads
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="facOptions" id="electricity" ng-model="report.type" value="Electricity">Electricity
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="facOptions" id="water" value="Water" ng-model="report.type">Water
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="facOptions" id="cleanliness" value="cleanliness" ng-model="report.type">cleanliness
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="facOptions" id="other" value="Other" ng-model="report.type">Other
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="comment">Comment:</label>
-                        <textarea type="textarea" class="form-control" rows="3" id="comment" ng-model="report.comment" placeholder="Comment" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="area">Area:</label>
-                        <input type="text" class="form-control" id="area" ng-model="report.area" placeholder="Area" value="Bangalore" required/>
-                    </div>
-
-                    <span class="label label-success">{{ success }}</span>
-
-                    <span class="label label-danger">{{ failure }}</span>
-
-                   <div class="alert alert-info">
-                            Report: {{ report | json }}
-                    </div> 
-                    
-                    <button class="btn btn-primary" ng-click="submit()">Submit</button>
-
-                    <button class="btn btn-info" ng-click="fetchReports()">Get Reports</button>
-
-
-
-                    <!-- <div class="row">
-                <div class="col-md-12" ng-repeat="report in reports">
-                    <div> <p>  {{ report.area }} </p> <p>  {{ report._id }} </p> </div>
-                </div>
-            </div> -->
-                </form>
-            </div>
+            <ng-view></ng-view>
             
-            <!--The middle section -->
-            <div class="col-md-6" ng-controller="rootController">
-                
-                 <div class="form-inline">
-                                <input type="number" class="form-control" ng-model="query.limit"/>
-                                <input type="text" class="form-control" ng-model="query.area" placeholder="Area" />
-                                 <select class="form-control" ng-model="query.category">
-                                    <option value="Safety">Safety</option>
-                                    <option value="Facility">Facility</option>
-                                </select>
-                                <button type="button" class="btn btn-primary" ng-click="queryReports()">Search</button>
-                                <button type="button" class="btn btn-info" ng-click="">Details</button>
-                </div>
-                <br/>
-                <div class="panel panel-default">
-                  <!-- Default panel contents -->
-                  <div class="panel-heading">Reports</div>
-            
-                  <!-- Table -->
-                  <table class="table" >
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Area</th>
-                        <th>Category</th>
-                        <th>Type</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        
-                      <tr ng-model="reports" ng-repeat="report in reports track by $index">
-                        <th scope="row">{{ $index + 1 }}</th>
-                        <td>{{ report.area }}</td>
-                        <td>{{ report.category }}</td>
-                        <td>{{ report.type }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                
-               
-            </div>
-                 
-                     
-            <div class="col-md-3" id="maps" ng-controller="mapController">
-                
-                    <div class="input-group">
-                      <input type="text" class="form-control" ng-model="searchArea">
-                      <div class="input-group-btn">
-                        <button type="button" class="btn btn-primary">Search</button>
-                      </div>
-                    </div>
-                     <br/>
-                     
-                    <div class="badge" id="status"></div>
-                    
-                   <div id="map-canvas"></div>
-                    
-                    
-            </div>
-            </div>
         </div>
-
+</div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.js"></script>
-        <script src="js/npm.js"></script>
          <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
         <script src="js/angular.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-route.min.js"></script>
         <script src="js/app.js"></script>
 </body>
 

@@ -8,12 +8,14 @@ var createdDate = require('../plugins/createdDate');
 var schema = new mongoose.Schema({
     category: String, 
     type: String,
-  area: String,
+  location: {type: [], index: '2d'}, 
   comment: String
 });
 
 // in production we disable auto index creation
 // schema.set('autoIndex', false);
+
+//set index on location
 
 // add created date property
 schema.plugin(createdDate);
@@ -22,8 +24,8 @@ schema.statics.findByDate = function(date, cb){
     this.find({'created': date}, cb);
 }
 
-schema.statics.findByArea = function(area, cb){
-    this.find({'area': area}, cb);
+schema.statics.findByLocation = function(latitude, longitude, maxDistance, cb){
+    this.find({'location': {$near: [latitude, longitude], $maxDistance: maxDistance}}, cb);
 }
 
 schema.statics.findByCategory = function(category, cb){
